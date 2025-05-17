@@ -41,43 +41,26 @@ OpenAI API Key
 
 # Installation
 Clone the repo
-
-bash
-Copy
-Edit
 git clone https://github.com/AminaNaaz/AI-Procurement-buddy.git
 cd AI-Procurement-buddy
 Create a virtual environment
 
-bash
-Copy
-Edit
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
-Install dependencies
 
-bash
-Copy
-Edit
+# Install dependencies
+
 pip install -r requirements.txt
 Set up secrets
-
 Create a secrets.toml file in the root directory (make sure it's in .gitignore) with your API keys:
-
-toml
-Copy
-Edit
 secrets.toml
 openai_api_key = "your-openai-api-key"
 serper_api_key = "your-serper-api-key"
-Usage
+
 Run the Streamlit app
-bash
-Copy
-Edit
+
 streamlit run streamlit_app.py
-Open your browser at http://localhost:8501 and interact with the AI Procurement Buddy UI.
 
 # Available workflows
 Supplier discovery: Ask the assistant to find suppliers for a product or service in a location.
@@ -85,9 +68,7 @@ Supplier discovery: Ask the assistant to find suppliers for a product or service
 Quotation email drafting: Request the assistant to generate a professional quotation or procurement email.
 
 # Project Structure
-graphql
-Copy
-Edit
+
 ai_procurement_project/
 ├── agents/
 │   ├── supplier_agent.py         # Supplier search and extraction logic
@@ -113,6 +94,7 @@ Modify router_agent.py to route queries through LangGraph nodes
 This approach modularizes your procurement assistant and makes it easy to add new capabilities.
 
 # Troubleshooting
+
 Pillow build errors: If you see errors installing Pillow on deployment platforms, ensure your environment has necessary build tools or pin Pillow version in requirements.txt.
 
 API key errors: Confirm that your secrets.toml contains valid API keys and the app reads them correctly.
