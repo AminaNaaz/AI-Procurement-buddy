@@ -43,29 +43,6 @@ Procurement teams often face time-consuming tasks such as searching for supplier
 
 ---
 
-## Getting Started
-
-### Prerequisites
-
-- Python 3.9 or later installed.
-- API keys from:
-  - [OpenAI](https://platform.openai.com/)
-  - [Serper API](https://serper.dev/)
-
-ai_procurement_project/
-├── agents/
-│   ├── supplier_agent.py       # Supplier search & contact extraction logic
-│   ├── email_agent.py          # Quotation email drafting workflows
-│   └── router_agent.py         # Routes user queries to correct workflow
-├── config.py                  # Configuration and API keys management
-├── langgraph_workflow.py      # (Optional) LangGraph workflow definitions
-├── main.py                    # Main orchestrator logic
-├── utils.py                   # Helper utility functions
-streamlit_app.py              # Streamlit app entrypoint and UI
-requirements.txt              # List of Python dependencies
-secrets.toml                 # API keys (excluded from git)
-README.md                    # This document
-
 # Troubleshooting & Tips
 Dependency issues: If you encounter errors installing packages like Pillow, try installing OS-level build tools or pin the package version.
 
@@ -78,8 +55,8 @@ We welcome contributions! Whether it’s fixing bugs, improving documentation, o
 
 
 
-Contact
-Created by Amina Naaz.
+# Contact
+
 Feel free to reach out for questions, feedback, or collaborations at aminanaazpython@gmail.com.
  
 Thank you for checking out AI-Procurement-Buddy! 🚀
