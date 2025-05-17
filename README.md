@@ -1,35 +1,45 @@
-Certainly! Here's the README content formatted in Markdown for direct use in your GitHub repository:
-
-markdown
-Copy
-Edit
 # AI-Procurement-Buddy
 
-**AI-Procurement-Buddy** is an intelligent AI assistant designed to automate procurement workflows by discovering suppliers, extracting contact details, and drafting quotation emails. Built with Python, Streamlit, LangChain, and LangGraph (optional), this tool streamlines procurement processes leveraging large language models and web scraping techniques.
+Welcome to **AI-Procurement-Buddy** — your intelligent AI assistant designed to revolutionize procurement workflows. This project leverages powerful language models, advanced web scraping, and smart workflow orchestration to automate supplier discovery, extract reliable contact information, and generate professional procurement emails — all within an easy-to-use Streamlit interface.
 
 ---
 
-## Features
+## Why AI-Procurement-Buddy?
 
-- **Supplier Discovery:** Search for relevant suppliers based on user queries using Serper API and web scraping.
-- **Contact Extraction:** Extract supplier emails, phone numbers, and addresses using regex and LLM-enhanced parsing.
-- **Quotation Email Drafting:** Generate professional procurement emails using large language models.
-- **Multi-Workflow Agent:** Route user queries intelligently between supplier discovery and email drafting.
-- **Streamlit UI:** Simple and interactive web interface for easy use.
-- **Extensible:** Optionally integrate LangGraph for orchestrating AI workflows as graphs.
+Procurement teams often face time-consuming tasks such as searching for suppliers, gathering accurate contact details, and crafting formal communication. This assistant simplifies those steps by:
+
+- **Automating supplier discovery** via smart search queries powered by Serper API and advanced filtering to avoid low-quality directories.
+- **Extracting accurate contact info** like emails, international phone numbers, and postal addresses using a combination of regex and LLM-powered parsing.
+- **Drafting professional quotation emails** tailored to user needs with minimal input.
+- **Routing user queries dynamically** between discovery and email drafting workflows to save time and reduce manual effort.
+- Providing a **modern, responsive UI** using Streamlit, accessible to non-technical users.
+- Optionally supporting **LangGraph** for orchestrating complex AI workflows as modular graphs — making the system highly extensible.
 
 ---
 
-## Tech Stack
+## Key Features
 
-- Python 3.9+
-- Streamlit (for UI)
-- LangChain (LLM orchestration)
-- LangGraph (optional, for workflow orchestration)
-- BeautifulSoup4 (web scraping)
-- Requests (HTTP calls)
-- Serper API (Google search API alternative)
-- OpenAI GPT-4 (LLM backend)
+| Feature                     | Description                                                                                       |
+|-----------------------------|---------------------------------------------------------------------------------------------------|
+| Supplier Discovery           | Find suppliers, manufacturers, or distributors by leveraging Google-like search with Serper API.  |
+| Contact Information Extraction | Parse and validate emails, international phone numbers, and postal addresses from websites.       |
+| Quotation Email Drafting     | Generate clear, professional procurement emails with context-aware prompts.                      |
+| Intelligent Query Routing    | Use a routing agent to direct queries to the appropriate workflow automatically.                  |
+| Streamlit UI                | Interactive and user-friendly front end to interact with the AI assistant.                         |
+| LangGraph Workflow (Optional) | Modular workflow orchestration enabling complex multi-step AI processes.                        |
+
+---
+
+## Technologies Used
+
+- **Python 3.9+**: Core programming language.
+- **Streamlit**: For building the interactive UI.
+- **LangChain**: To orchestrate calls to large language models.
+- **LangGraph (Optional)**: For defining and managing AI workflows as graphs.
+- **BeautifulSoup4**: HTML parsing for web scraping.
+- **Requests**: HTTP client for making web requests.
+- **Serper API**: Google Search API alternative for supplier search.
+- **OpenAI GPT-4**: Large Language Model powering text generation and parsing.
 
 ---
 
@@ -37,250 +47,39 @@ Edit
 
 ### Prerequisites
 
-- Python 3.9 or higher
-- [Serper API Key](https://serper.dev/)
-- OpenAI API Key
+- Python 3.9 or later installed.
+- API keys from:
+  - [OpenAI](https://platform.openai.com/)
+  - [Serper API](https://serper.dev/)
 
-### Installation
-
-1. **Clone the repo**
-
-```bash
-git clone https://github.com/AminaNaaz/AI-Procurement-buddy.git
-cd AI-Procurement-buddy
-Create a virtual environment
-
-bash
-Copy
-Edit
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-Install dependencies
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Set up secrets
-
-Create a secrets.toml file in the root directory (make sure it's in .gitignore) with your API keys:
-
-toml
-Copy
-Edit
-# secrets.toml
-openai_api_key = "your-openai-api-key"
-serper_api_key = "your-serper-api-key"
-Usage
-Run the Streamlit app
-bash
-Copy
-Edit
-streamlit run streamlit_app.py
-Open your browser at http://localhost:8501 and interact with the AI Procurement Buddy UI.
-
-Available workflows
-Supplier discovery: Ask the assistant to find suppliers for a product or service in a location.
-
-Quotation email drafting: Request the assistant to generate a professional quotation or procurement email.
-
-Project Structure
-graphql
-Copy
-Edit
 ai_procurement_project/
 ├── agents/
-│   ├── supplier_agent.py         # Supplier search and extraction logic
-│   ├── email_agent.py            # Email drafting logic
-│   └── router_agent.py           # Routes queries to workflows
-├── config.py                    # API keys and LLM configuration
-├── langgraph_workflow.py        # (Optional) LangGraph workflow orchestration
-├── main.py                      # Core logic orchestrator
-└── utils.py                     # Utility functions
-streamlit_app.py                # Streamlit UI entry point
-requirements.txt                # Dependencies list
-secrets.toml                   # API keys (not committed)
-README.md                      # This file
-LangGraph Integration (Optional)
-If you want to use LangGraph for better workflow orchestration:
+│   ├── supplier_agent.py       # Supplier search & contact extraction logic
+│   ├── email_agent.py          # Quotation email drafting workflows
+│   └── router_agent.py         # Routes user queries to correct workflow
+├── config.py                  # Configuration and API keys management
+├── langgraph_workflow.py      # (Optional) LangGraph workflow definitions
+├── main.py                    # Main orchestrator logic
+├── utils.py                   # Helper utility functions
+streamlit_app.py              # Streamlit app entrypoint and UI
+requirements.txt              # List of Python dependencies
+secrets.toml                 # API keys (excluded from git)
+README.md                    # This document
 
-Add langgraph to your requirements.txt
+# Troubleshooting & Tips
+Dependency issues: If you encounter errors installing packages like Pillow, try installing OS-level build tools or pin the package version.
 
-Define your workflow graph in langgraph_workflow.py
+API key errors: Double-check your keys and ensure they are loaded correctly in secrets.toml.
 
-Modify router_agent.py to route queries through LangGraph nodes
+Deployment: For Streamlit Cloud or other platforms, add your secrets via their environment or secrets management UI.
 
-This approach modularizes your procurement assistant and makes it easy to add new capabilities.
-
-Troubleshooting
-Pillow build errors: If you see errors installing Pillow on deployment platforms, ensure your environment has necessary build tools or pin Pillow version in requirements.txt.
-
-API key errors: Confirm that your secrets.toml contains valid API keys and the app reads them correctly.
-
-Streamlit Cloud deployment: Make sure secrets are added via Streamlit’s advanced settings if deploying on Streamlit Cloud.
-
-Contributing
-Contributions are welcome! Please open issues or submit pull requests.
-
-License
-MIT License
-
-vbnet
-Copy
-Edit
-
-You can copy-paste this directly into your `README.md` file on GitHub. Let me know if you want me to help with any specific section or adding badges, screenshots, or anything else!
+# Contribution
+We welcome contributions! Whether it’s fixing bugs, improving documentation, or adding new features, please open an issue or submit a pull request.
 
 
 
-
-
-
-
-You said:
-convert everything to put in the readme file in github
-
-
-ChatGPT said:
-Sure! Here's the entire README content fully formatted and ready to paste into your README.md file on GitHub:
-
-markdown
-Copy
-Edit
-# AI-Procurement-Buddy
-
-**AI-Procurement-Buddy** is an intelligent AI assistant designed to automate procurement workflows by discovering suppliers, extracting contact details, and drafting quotation emails. Built with Python, Streamlit, LangChain, and LangGraph (optional), this tool streamlines procurement processes leveraging large language models and web scraping techniques.
-
----
-
-## Features
-
-- **Supplier Discovery:** Search for relevant suppliers based on user queries using Serper API and web scraping.
-- **Contact Extraction:** Extract supplier emails, phone numbers, and addresses using regex and LLM-enhanced parsing.
-- **Quotation Email Drafting:** Generate professional procurement emails using large language models.
-- **Multi-Workflow Agent:** Route user queries intelligently between supplier discovery and email drafting.
-- **Streamlit UI:** Simple and interactive web interface for easy use.
-- **Extensible:** Optionally integrate LangGraph for orchestrating AI workflows as graphs.
-
----
-
-## Tech Stack
-
-- Python 3.9+
-- Streamlit (for UI)
-- LangChain (LLM orchestration)
-- LangGraph (optional, for workflow orchestration)
-- BeautifulSoup4 (web scraping)
-- Requests (HTTP calls)
-- Serper API (Google search API alternative)
-- OpenAI GPT-4 (LLM backend)
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.9 or higher
-- [Serper API Key](https://serper.dev/)
-- OpenAI API Key
-
-### Installation
-
-1. **Clone the repo**
-
-```bash
-git clone https://github.com/AminaNaaz/AI-Procurement-buddy.git
-cd AI-Procurement-buddy
-Create a virtual environment
-
-bash
-Copy
-Edit
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-Install dependencies
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Set up secrets
-
-Create a secrets.toml file in the root directory (make sure it's in .gitignore) with your API keys:
-
-toml
-Copy
-Edit
-# secrets.toml
-openai_api_key = "your-openai-api-key"
-serper_api_key = "your-serper-api-key"
-Usage
-Run the Streamlit app
-bash
-Copy
-Edit
-streamlit run streamlit_app.py
-Open your browser at http://localhost:8501 and interact with the AI Procurement Buddy UI.
-
-Available workflows
-Supplier discovery: Ask the assistant to find suppliers for a product or service in a location.
-
-Quotation email drafting: Request the assistant to generate a professional quotation or procurement email.
-
-Project Structure
-graphql
-Copy
-Edit
-ai_procurement_project/
-├── agents/
-│   ├── supplier_agent.py         # Supplier search and extraction logic
-│   ├── email_agent.py            # Email drafting logic
-│   └── router_agent.py           # Routes queries to workflows
-├── config.py                    # API keys and LLM configuration
-├── langgraph_workflow.py        # (Optional) LangGraph workflow orchestration
-├── main.py                      # Core logic orchestrator
-└── utils.py                     # Utility functions
-streamlit_app.py                # Streamlit UI entry point
-requirements.txt                # Dependencies list
-secrets.toml                   # API keys (not committed)
-README.md                      # This file
-LangGraph Integration (Optional)
-If you want to use LangGraph for better workflow orchestration:
-
-Add langgraph to your requirements.txt
-
-Define your workflow graph in langgraph_workflow.py
-
-Modify router_agent.py to route queries through LangGraph nodes
-
-This approach modularizes your procurement assistant and makes it easy to add new capabilities.
-
-Troubleshooting
-Pillow build errors: If you see errors installing Pillow on deployment platforms, ensure your environment has necessary build tools or pin Pillow version in requirements.txt.
-
-API key errors: Confirm that your secrets.toml contains valid API keys and the app reads them correctly.
-
-Streamlit Cloud deployment: Make sure secrets are added via Streamlit’s advanced settings if deploying on Streamlit Cloud.
-
-Contributing
-Contributions are welcome! Please open issues or submit pull requests.
-
-License
-MIT License
-
-yaml
-Copy
-Edit
-
----
-
-Just copy all of that and paste it directly into your `README.md` file in the GitHub repo. Let me know if you want me to help you with badges, screenshots, or adding deployment instructions!
-
-
-
-
-
-
+Contact
+Created by Amina Naaz.
+Feel free to reach out for questions, feedback, or collaborations at aminanaazpython@gmail.com.
+ 
+Thank you for checking out AI-Procurement-Buddy! 🚀
