@@ -1,4 +1,4 @@
-##AI-Procurement-Buddy
+## AI-Procurement-Buddy
 AI-Procurement-Buddy is an intelligent AI assistant designed to automate procurement workflows by discovering suppliers, extracting contact details, and drafting quotation emails. Built with Python, Streamlit, LangChain, and LangGraph (optional), this tool streamlines procurement processes leveraging large language models and web scraping techniques.
 
 #Features
