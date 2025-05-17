@@ -42,3 +42,6 @@
 
 git clone https://github.com/AminaNaaz/AI-Procurement-buddy.git
 cd AI-Procurement-buddy
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
