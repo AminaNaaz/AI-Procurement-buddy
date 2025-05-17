@@ -1,4 +1,4 @@
-from utils.error import EmailDraftingError
+from ai_procurement_project.utils.error import EmailDraftingError
 
 def draft_email(to_email, product_details, llm):
     try:
