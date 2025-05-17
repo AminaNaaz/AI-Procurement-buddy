@@ -1,6 +1,7 @@
 import streamlit as st
-from router_agent import route_query
-from utils.logger import logger
+from ai_procurement_project.router_agent import route_query
+from ai_procurement_project.utils.logger import logger
+
 openai_key = st.secrets["OPENAI_API_KEY"]
 serper_key = st.secrets["SERPER_API_KEY"]
 import os
