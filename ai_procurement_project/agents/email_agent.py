@@ -1,7 +1,6 @@
-from config import llm
 from utils.error import EmailDraftingError
 
-def draft_email(to_email, product_details):
+def draft_email(to_email, product_details, llm):
     try:
         prompt = f"""
         Draft a professional quotation request email with the following details:
