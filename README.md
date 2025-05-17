@@ -68,7 +68,7 @@ Create a secrets.toml file in the root directory (make sure it's in .gitignore) 
 toml
 Copy
 Edit
-# secrets.toml
+secrets.toml
 openai_api_key = "your-openai-api-key"
 serper_api_key = "your-serper-api-key"
 Usage
