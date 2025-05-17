@@ -2,12 +2,6 @@ import streamlit as st
 from ai_procurement_project.router_agent import route_query
 from ai_procurement_project.utils.logger import logger
 
-openai_key = st.secrets["OPENAI_API_KEY"]
-serper_key = st.secrets["SERPER_API_KEY"]
-import os
-os.environ["OPENAI_API_KEY"] = openai_key
-os.environ["SERPER_API_KEY"] = serper_key   
-
 def main():
     st.set_page_config(page_title="AI Procurement Assistant", page_icon="📦")
     st.title("📦 AI Procurement Assistant")
@@ -16,12 +10,10 @@ def main():
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Display chat history
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # New user input (chat_input automatically appears after each message)
     prompt = st.chat_input("What procurement help do you need?")
 
     if prompt:
@@ -33,7 +25,10 @@ def main():
 
         with st.spinner("🔎 Processing your request..."):
             try:
-                response = route_query(prompt)
+                openai_key = st.secrets["OPENAI_API_KEY"]
+                serper_key = st.secrets["SERPER_API_KEY"]
+
+                response = route_query(prompt, openai_key=openai_key, serper_key=serper_key)
                 logger.info(f"Generated response: {response[:100]}...")
             except Exception as e:
                 response = f"🚨 An error occurred: {str(e)}"
