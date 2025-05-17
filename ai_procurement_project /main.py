@@ -1,6 +1,11 @@
 import streamlit as st
 from router_agent import route_query
 from utils.logger import logger
+openai_key = st.secrets["OPENAI_API_KEY"]
+serper_key = st.secrets["SERPER_API_KEY"]
+import os
+os.environ["OPENAI_API_KEY"] = openai_key
+os.environ["SERPER_API_KEY"] = serper_key   
 
 def main():
     st.set_page_config(page_title="AI Procurement Assistant", page_icon="📦")
