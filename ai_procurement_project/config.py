@@ -1,26 +1,11 @@
-import os
-from dotenv import load_dotenv
+import streamlit as st
 from langchain_openai import ChatOpenAI
 
+# Fetch secrets from .streamlit/secrets.toml
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+serper_api_key = st.secrets["SERPER_API_KEY"]
 
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Fetch the API key securely
-openai_api_key = os.getenv("OPENAI_API_KEY")
-
-# Safety check
-if not openai_api_key:
-    raise RuntimeError("OPENAI_API_KEY environment variable not set")
-
-# Fetch the Serper API key securely
-serper_api_key = os.getenv("SERPER_API_KEY")
-if not serper_api_key:
-    raise RuntimeError("SERPER_API_KEY environment variable not set")
-
-
-# Instantiate the GPT-4o model
+# Initialize LLM
 llm = ChatOpenAI(
     model_name="gpt-4o",
     temperature=0.3,
