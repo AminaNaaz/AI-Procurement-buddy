@@ -1,4 +1,4 @@
-from ai_procurement_project.config import llm, serper_api_key
+from ai_procurement_project.config import llm, serper_api_key as global_serper_api_key
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -55,7 +55,6 @@ def extract_from_text(text):
         "email": email,
         "phone": prioritized or fallback
     }
-
 
 
 def clean_supplier_name(title):
@@ -130,7 +129,10 @@ def extract_supplier_info(html_content, base_url=None, location_hint=None):
     return contact_info
 
 
-def get_supplier_urls_with_serper(query, max_results=10):
+def get_supplier_urls_with_serper(query, max_results=10, serper_api_key=None):
+    if serper_api_key is None:
+        serper_api_key = global_serper_api_key
+
     url = "https://google.serper.dev/search"
     headers = {"X-API-KEY": serper_api_key}
     params = {"q": query, "num": max_results}
@@ -151,8 +153,11 @@ def get_supplier_urls_with_serper(query, max_results=10):
     return urls
 
 
-def search_suppliers(prompt: str, max_results: int = None, max_retries=3):
+def search_suppliers(prompt: str, max_results: int = None, max_retries=3, serper_api_key=None):
     try:
+        if serper_api_key is None:
+            serper_api_key = global_serper_api_key
+
         if max_results is None:
             max_results = parse_requested_number(prompt, default=3)
 
@@ -161,7 +166,7 @@ def search_suppliers(prompt: str, max_results: int = None, max_retries=3):
         location_hint = location_hint_match.group(1).strip() if location_hint_match else None
 
         enhanced_query = f"{prompt} supplier manufacturer distributor official contact email phone"
-        supplier_urls = get_supplier_urls_with_serper(enhanced_query, max_results=max_results * 5)
+        supplier_urls = get_supplier_urls_with_serper(enhanced_query, max_results=max_results * 5, serper_api_key=serper_api_key)
 
         results = []
         headers = {"User-Agent": "Mozilla/5.0"}
