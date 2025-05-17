@@ -1,8 +1,8 @@
 import re
-from agents.supplier_agent import search_suppliers, parse_requested_number
-from agents.email_agent import draft_email
-from utils.error import AgentRoutingError
-from utils.logger import logger
+from ai_procurement_project.agents.supplier_agent import search_suppliers, parse_requested_number
+from ai_procurement_project.agents.email_agent import draft_email
+from ai_procurement_project.utils.error import AgentRoutingError
+from ai_procurement_project.utils.logger import logger
 
 from langchain.chat_models import ChatOpenAI
 
