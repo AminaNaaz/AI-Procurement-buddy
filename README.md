@@ -51,7 +51,7 @@ API key errors: Double-check your keys and ensure they are loaded correctly in s
 Deployment: For Streamlit Cloud or other platforms, add your secrets via their environment or secrets management UI.
 
 # Contribution
-We welcome contributions! Whether it’s fixing bugs, improving documentation, or adding new features, please open an issue or submit a pull request.
+I welcome contributions! Whether it’s fixing bugs, improving documentation, or adding new features, please open an issue or submit a pull request.
 
 
 
