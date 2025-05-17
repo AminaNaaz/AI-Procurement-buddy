@@ -1,4 +1,4 @@
-from config import llm, serper_api_key
+from ai_procurement_project.config import llm, serper_api_key
 import requests
 from bs4 import BeautifulSoup
 import re
