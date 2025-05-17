@@ -4,7 +4,12 @@ from agents.email_agent import draft_email
 from utils.error import AgentRoutingError
 from utils.logger import logger
 import re
-
+openai_key = st.secrets["OPENAI_API_KEY"]
+serper_key = st.secrets["SERPER_API_KEY"]
+import os
+os.environ["OPENAI_API_KEY"] = openai_key
+os.environ["SERPER_API_KEY"] = serper_key
+import streamlit as st
 def route_query(full_prompt: str) -> str:
     """
     Routes user prompt to either supplier discovery or email drafting
