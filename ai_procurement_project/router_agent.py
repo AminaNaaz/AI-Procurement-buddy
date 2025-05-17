@@ -4,12 +4,13 @@ from agents.email_agent import draft_email
 from utils.error import AgentRoutingError
 from utils.logger import logger
 
-# We will instantiate LLM dynamically in route_query using passed keys
 from langchain.chat_models import ChatOpenAI
 
+
 def get_llm(openai_api_key: str):
-    # Create and return LLM instance with the API key passed explicitly
+    # Instantiate LLM with provided API key
     return ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
+
 
 def route_query(full_prompt: str, openai_key: str, serper_key: str = None) -> str:
     """
@@ -30,13 +31,14 @@ def route_query(full_prompt: str, openai_key: str, serper_key: str = None) -> st
         if "SUPPLIER_DISCOVERY" in intent:
             return handle_supplier_discovery(full_prompt, serper_key=serper_key)
         elif "EMAIL_DRAFTING" in intent:
-            return handle_email_drafting(full_prompt)
+            return handle_email_drafting(full_prompt, llm)
         else:
             raise AgentRoutingError(f"Could not determine intent: {intent}")
 
     except Exception as e:
         logger.error(f"[Router] Routing failed: {e}")
         raise
+
 
 def handle_supplier_discovery(user_prompt: str, serper_key: str = None) -> str:
     """
@@ -65,19 +67,24 @@ def handle_supplier_discovery(user_prompt: str, serper_key: str = None) -> str:
         logger.error(f"[Router] Supplier discovery failed: {e}")
         return f"Supplier discovery failed: {str(e)}"
 
-def handle_email_drafting(user_prompt: str) -> str:
+
+def handle_email_drafting(user_prompt: str, llm) -> str:
     """
     Handles drafting of email by:
     - Extracting supplier email
-    - Sending the request to the email drafting agent
+    - Sending the request to the email drafting agent with the llm instance
     """
     try:
-        email = re.search(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+", user_prompt)
-        if not email:
+        email_match = re.search(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+", user_prompt)
+        if not email_match:
             raise AgentRoutingError("No valid email found in query.")
-        supplier_email = email.group(0)
-        product = user_prompt.replace(supplier_email, "").strip()
-        return draft_email(supplier_email, product)
+
+        supplier_email = email_match.group(0)
+        product_details = user_prompt.replace(supplier_email, "").strip()
+
+        # Pass the llm instance to draft_email so it uses the correct client
+        return draft_email(supplier_email, product_details, llm)
+
     except Exception as e:
         logger.error(f"[Router] Email drafting failed: {e}")
         return f"Email drafting failed: {str(e)}"
